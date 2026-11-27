@@ -178,6 +178,24 @@ a.tag:hover { border-color: var(--brand-2); color: var(--ink); }
 .flag-world { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%230b6e99'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.2'%3E%3Ccircle cx='15' cy='10' r='6'/%3E%3Cpath d='M9 10h12M15 4c-2.6 3.4-2.6 8.6 0 12M15 4c2.6 3.4 2.6 8.6 0 12'/%3E%3C/g%3E%3C/svg%3E"); }
 .crest { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 7px; background: linear-gradient(180deg, var(--tc) 0 72%, var(--tc2, var(--tc)) 72%); color: var(--ti, #fff); font-size: 8.5px; font-weight: 900; letter-spacing: 0.02em; line-height: 1; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%); }
 .crest.sm { width: 20px; height: 20px; border-radius: 6px; font-size: 7.5px; }
+/* Club crests (when switched on): the image alone; our initials badge if it fails to load. */
+.crest.logo { border-radius: 0; background: none; box-shadow: none; }
+.crest.logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.crest.logo .crest-code { display: none; }
+.crest.logo.fallback { border-radius: 7px; background: linear-gradient(180deg, var(--tc) 0 72%, var(--tc2, var(--tc)) 72%); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 16%); }
+.crest.logo.fallback img { display: none; }
+.crest.logo.fallback .crest-code { display: inline; }
+:root[data-theme="dark"] .crest.logo:not(.fallback), .topstrip .crest.logo:not(.fallback) { padding: 2px; border-radius: 6px; background: #fff; }
+.emblem { display: grid; place-items: center; flex: none; border-radius: 50%; background: #fff; box-shadow: 0 8px 22px rgb(0 0 0 / 30%), 0 0 0 4px rgb(255 255 255 / 18%); }
+.emblem img { width: 70%; height: 70%; object-fit: contain; }
+.emblem .emblem-fallback { display: none; }
+.emblem.fallback { border-radius: 0; background: none; box-shadow: none; }
+.emblem.fallback img { display: none; }
+.emblem.fallback .emblem-fallback { display: block; }
+.scoreline .emblem { width: 96px; height: 96px; }
+.team-hero .emblem { width: 120px; height: 120px; }
+.tick-line { display: flex; align-items: center; gap: 6px; }
+.tick .crest.sm { width: 18px; height: 18px; }
 .team-link { display: inline-flex; align-items: center; gap: 8px; min-width: 0; color: inherit; text-decoration: none; font-weight: 650; }
 .team-link > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 a.team-link:hover > span:last-child { color: var(--brand-2); text-decoration: underline; text-underline-offset: 2px; }
@@ -403,6 +421,19 @@ a.match:hover { background: var(--soft); }
 .team-hero .kicker .tag { border-color: rgb(255 255 255 / 25%); background: rgb(255 255 255 / 12%); color: #fff; }
 .team-hero .lede { margin: 0; color: rgb(255 255 255 / 88%); }
 .team-hero .meta { margin: 8px 0 0; color: rgb(255 255 255 / 72%); }
+.team-hero-text { min-width: 0; }
+.next-match { display: flex; flex-direction: column; gap: 6px; margin-left: auto; min-width: 230px; padding: 14px 18px; border: 1px solid rgb(255 255 255 / 22%); border-radius: var(--radius); background: rgb(255 255 255 / 10%); color: #fff; text-decoration: none; }
+a.next-match:hover { background: rgb(255 255 255 / 16%); }
+.nm-label { font-family: var(--display); font-stretch: condensed; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(255 255 255 / 70%); }
+.nm-comp { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: rgb(255 255 255 / 85%); }
+.nm-comp .flag { width: 15px; height: 10px; }
+.nm-teams { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+.nm-teams b { font-family: var(--display); font-stretch: condensed; color: rgb(255 255 255 / 70%); }
+.nm-teams .crest { width: 30px; height: 30px; }
+.nm-teams .crest.logo:not(.fallback) { padding: 3px; border-radius: 8px; background: #fff; }
+.nm-when { font-size: 0.86rem; color: rgb(255 255 255 / 85%); }
+td.next a { display: inline-flex; vertical-align: middle; }
+td.next .crest { width: 22px; height: 22px; }
 .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .panel { padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .panel h3 { font-size: 1.1rem; }
@@ -513,9 +544,12 @@ a.match:hover { background: var(--soft); }
   .story-row strong { font-size: 1.12rem; }
   .scoreline { gap: 8px; }
   .scoreline .kit { width: 58px; height: 58px; }
+  .scoreline .emblem { width: 66px; height: 66px; }
+  .team-hero .emblem { width: 96px; height: 96px; }
   .team-hero { flex-direction: column; padding: 22px 18px; text-align: center; }
   .team-hero .kicker { justify-content: center; }
   .team-hero .kit { width: 88px; height: 88px; }
+  .next-match { width: 100%; min-width: 0; margin: 8px 0 0; align-items: center; }
   .pbars li { grid-template-columns: 92px minmax(0, 1fr) 30px; }
   .numbers-list { grid-template-columns: 1fr; }
   .numbers-list dt { padding-bottom: 0; border-bottom: 0; }
