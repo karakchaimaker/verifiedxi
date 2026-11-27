@@ -16,6 +16,20 @@
     el.textContent = new Intl.DateTimeFormat(undefined, format).format(when);
   });
 
+  // Light or dark: light by default; the choice is remembered on this device only.
+  var toggle = document.querySelector(".theme-toggle");
+  if (toggle) {
+    var root = document.documentElement;
+    toggle.hidden = false;
+    toggle.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+    toggle.addEventListener("click", function () {
+      var dark = root.dataset.theme !== "dark";
+      if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
+      toggle.setAttribute("aria-pressed", String(dark));
+      try { localStorage.setItem("vxi-theme", dark ? "dark" : "light"); } catch (e) { /* private mode */ }
+    });
+  }
+
   // Competition filter chips: show one competition's games or stories.
   document.querySelectorAll("[data-filters]").forEach(function (bar) {
     var target = document.querySelector(bar.getAttribute("data-filters"));
