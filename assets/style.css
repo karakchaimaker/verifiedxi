@@ -548,6 +548,30 @@ td.next .crest { width: 22px; height: 22px; }
 .sb-bar { grid-area: bar; display: flex; gap: 2px; height: 8px; overflow: hidden; border-radius: 4px; background: var(--soft); }
 .sb-home { background: var(--series-1); }
 .sb-away { background: var(--series-2); }
+/* The match: stats, goals and cards (from the second provider) */
+.poss-bar { height: 12px; }
+.hero-scorers { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: start; gap: 12px; margin: -2px 0 12px; color: rgb(255 255 255 / 88%); font-size: 0.86rem; }
+.hero-scorers .home { text-align: right; }
+.hero-scorers .away { text-align: left; }
+.hero-scorers .ball, .ev-goal, .ev-penalty, .ev-own_goal, .ev-missed_penalty { width: 15px; height: 15px; background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8.6' fill='%23fff' stroke='%23111' stroke-width='1.6'/%3E%3Cpath d='M10 5.8l3.6 2.6-1.4 4.2H7.8L6.4 8.4z' fill='%23111'/%3E%3C/svg%3E"); }
+.hero-scorers .ball { margin-top: 2px; }
+.ev-own_goal { border-radius: 50%; box-shadow: 0 0 0 2px var(--loss); }
+.ev-missed_penalty { opacity: 0.4; }
+.ev-yellow, .ev-red { width: 11px; height: 15px; border-radius: 2px; }
+.ev-yellow { background: #f5c400; }
+.ev-red { background: #d7262b; }
+.ev-list { margin: 0; padding: 0; list-style: none; }
+.ev-list li { display: grid; grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr); align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--line); }
+.ev-list li:first-child { border-top: 0; }
+.ev-min { justify-self: center; padding: 1px 8px; border-radius: 999px; background: var(--soft); font-family: var(--display); font-stretch: condensed; font-size: 0.92rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.ev-side { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.9rem; }
+.ev-side.home { flex-direction: row-reverse; text-align: right; }
+.ev-icon { flex: none; }
+.ev-who { display: flex; flex-direction: column; min-width: 0; font-weight: 650; }
+.ev-assist { color: var(--muted); font-size: 0.78rem; font-weight: 400; }
+.gc-scorers { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 7px 14px 0; color: var(--ink-2); font-size: 0.8rem; }
+.gc-scorers span:first-child { text-align: right; }
+.gc-stats { padding: 4px 14px 0; color: var(--muted); font-size: 0.8rem; text-align: center; font-variant-numeric: tabular-nums; }
 .pcompare { margin: 0; padding: 0; font-size: 0.86rem; list-style: none; }
 .pcompare li { display: grid; grid-template-columns: 104px minmax(0, 1fr) minmax(0, 1fr); align-items: baseline; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
 .pcompare li.head { padding-top: 0; border-top: 0; font-weight: 800; }
